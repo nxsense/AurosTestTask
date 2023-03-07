@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan(basePackages = "test.task.controllers")
+@ComponentScan(basePackages = "task.controllers")
 @EnableWebMvc
 public class WebAppConfiguration {
 
@@ -17,7 +17,7 @@ public class WebAppConfiguration {
     public ViewResolver internalResourceViewResolver(){
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF");
+        bean.setPrefix("/WEB-INF/views/");
         bean.setSuffix(".jsp");
         return bean;
     }

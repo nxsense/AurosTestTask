@@ -45,6 +45,6 @@ public class KnowledgePackageController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
         knowledgePackageService.delete(id);
-        return "redirect: /sets";
+        return "redirect: /kpacs";
     }
 }
