@@ -1,5 +1,6 @@
 package task.dao.impl;
 
+import org.springframework.jdbc.core.RowMapper;
 import task.dao.KnowledgePackageSetDao;
 import task.entity.KnowledgePackage;
 import task.entity.KnowledgePackageSet;
@@ -21,7 +22,7 @@ public class KnowledgePackageSetDaoImpl implements KnowledgePackageSetDao {
     private final String getAllQuery = "SELECT * FROM k_pac_set";
     private final String deleteFromKPacKPacSetQuery = "DELETE  FROM k_pac_k_pac_set WHERE k_pac_set_id = ?";
     private final String deleteFromKPacSetQuery = "DELETE FROM k_pac_set WHERE id=?";
-    private final String getKPacsInSetQuery = "SELECT * FROM k_pac RIGHT JOIN k_pac_k_pac_set on k_pac.id = k_pac_k_pac_set.k_pac_id WHERE k_pac_k_pac_set.k_pac_id = ?";
+    private final String getKPacsInSetQuery = "SELECT * FROM k_pac RIGHT JOIN k_pac_k_pac_set on k_pac.id = k_pac_k_pac_set.k_pac_id WHERE k_pac_k_pac_set.k_pac_set_id = ?";
     private final String addKpacToSet = "INSERT INTO k_pac_k_pac_set (k_pac_set_id, k_pac_id) values (?, ?)";
     public KnowledgePackageSetDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -62,5 +63,10 @@ public class KnowledgePackageSetDaoImpl implements KnowledgePackageSetDao {
     @Override
     public void addKnowledgePackageToSet(long setId, long packageId) {
         jdbcTemplate.update(addKpacToSet, setId, packageId);
+    }
+
+    @Override
+    public KnowledgePackageSet getById(Long id) {
+        return jdbcTemplate.queryForObject("SELECT * FROM k_pac_set WHERE id = ?", new Object[]{id}, new BeanPropertyRowMapper<KnowledgePackageSet>());
     }
 }

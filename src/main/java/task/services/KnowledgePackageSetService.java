@@ -11,4 +11,5 @@ public interface KnowledgePackageSetService {
     boolean delete (Long id);
     List<KnowledgePackage> getKPacsFromSet(Long id);
     void addKPacToSet(Long setId, Long pacId);
+    KnowledgePackageSet getById(Long id);
 }

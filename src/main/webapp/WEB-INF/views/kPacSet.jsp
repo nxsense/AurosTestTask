@@ -10,8 +10,6 @@
   <tr>
     <th>Id</th>
     <th>Title</th>
-    <th>Description</th>
-    <th>Creation Date</th>
     <th>Delete</th>
   </tr>
   <c:forEach var="kPacSet" items="${sets}">

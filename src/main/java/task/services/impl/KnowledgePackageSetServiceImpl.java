@@ -41,4 +41,11 @@ public class KnowledgePackageSetServiceImpl implements KnowledgePackageSetServic
     public void addKPacToSet(Long setId, Long pacId) {
         knowledgePackageSetDao.addKnowledgePackageToSet(setId, pacId);
     }
+
+    @Override
+    public KnowledgePackageSet getById(Long id) {
+        KnowledgePackageSet knowledgePackageSet = knowledgePackageSetDao.getById(id);
+        knowledgePackageSet.setKnowledgePackages(knowledgePackageSetDao.getAllKnowledgePackagesInSet(id));
+        return knowledgePackageSet;
+    }
 }

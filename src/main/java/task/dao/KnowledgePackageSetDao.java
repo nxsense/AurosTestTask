@@ -11,4 +11,5 @@ public interface KnowledgePackageSetDao {
     boolean delete(long id);
     List<KnowledgePackage> getAllKnowledgePackagesInSet(long id);
     void addKnowledgePackageToSet(long setId, long packageId);
+    KnowledgePackageSet getById(Long id);
 }

@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import task.mappers.KnowledgePackageDtoMapper;
 import task.services.KnowledgePackageSetService;
 
-import java.util.stream.Collectors;
-
 @Controller
 public class KnowledgePackagesInSetController {
     private final KnowledgePackageSetService knowledgePackageSetService;
@@ -21,9 +19,7 @@ public class KnowledgePackagesInSetController {
 
     @GetMapping("/set/{id}")
     public String getById (@PathVariable Long id, Model model){
-        model.addAttribute("set", knowledgePackageSetService.getKPacsFromSet(id).stream()
-                .map(knowledgePackageDtoMapper::toDto)
-                .collect(Collectors.toList()));
-        return "pack";
+        model.addAttribute("kPacSet", knowledgePackageSetService.getById(id));
+        return "set";
     }
 }
